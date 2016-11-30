@@ -43,25 +43,25 @@ class Cell(object):
 
 class Grid(object):
 
-    def __init__(self, size):
-        self.size = size
+    def __init__(self, node_size, grid_size):
+        self.node_size = node_size
         self.grid = []
-        for i in range(self.size):
+        self.grid_size = grid_size
+        for i in range(self.grid_size):
             self.grid.append([])
-            for j in range(self.size):
-                temp = Cell((i*25), (j*25), self.size)
+            for j in range(self.grid_size):
+                temp = Cell((i*self.node_size), (j*self.node_size), self.node_size)
                 self.grid[i].append(temp)
 
     def render(self):
-        for i in range(self.size):
-            for j in range(self.size):
+        for i in range(self.grid_size):
+            for j in range(self.grid_size):
                 self.grid[i][j].render()
-
 
 def setup():
     size(500,500)
 
 def draw():
     background(0)
-    c = Grid(20)
+    c = Grid(20,25)
     c.render()
