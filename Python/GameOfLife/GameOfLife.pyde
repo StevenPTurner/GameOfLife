@@ -39,9 +39,7 @@ class Cell(object):
         self.is_alive = True
 
     def render(self):
-        for i in range(self.size):
-            for j in range(self.size):
-                self.view.render(self.is_alive)
+        self.view.render(self.is_alive)
 
 class Grid(object):
 
@@ -68,21 +66,17 @@ class Grid(object):
             for j in range(len(self.cell[0])):
                 self.cell[i][j].is_alive = random.getrandbits(1)
 
-grid = Grid(20,25)
+grid = Grid(5,100)
 
 def setup():
     size(500,500)
     grid.init()
-    #frameRate(60)
+    frameRate(60)
 
 def draw():
     background(0)
-
-    # for i in range(len(grid.cell)):
-    #     for j in range(len(grid.cell[0])):
-    #         print count_population(grid,5,5)
+    run()
     grid.render()
-
 
 def count_population(grid,i,j):
     population_count = 0
@@ -121,9 +115,13 @@ def count_population(grid,i,j):
 
     return population_count
 
-
-
 def run():
-    for i in range(len(c.grid)):
-        for j in range(len(c.grid[0])):
-            print "lol"
+    for i in range(len(grid.cell)):
+        for j in range(len(grid.cell[0])):
+            count = count_population(grid,i,j)
+            if grid.cell[i][j].is_alive == True:
+                if count < 2 or count > 3:
+                    grid.cell[i][j].is_alive = False
+            if grid.cell[i][j].is_alive == False:
+                if count == 3:
+                    grid.cell[i][j].is_alive = True
