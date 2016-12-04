@@ -6,21 +6,21 @@ public class Cell {
 
   public Cell(float x, float y, float size) {
     this.x = x;
-    this.y = y
+    this.y = y;
     this.size = size;
     alive = false;
-    view = new CellView(x,y,size)
+    view = new CellView(x,y,size);
   }
 
-  public kill() {
+  public void kill() {
     alive = false;
   }
 
-  public revive() {
+  public void revive() {
     alive = true;
   }
 
-  public render() {
+  public void render() {
     view.render(alive);
   }
 
