@@ -24,4 +24,8 @@ public class Cell {
     view.render(alive);
   }
 
+  public boolean isAlive() {
+    return alive;
+  }
+
 }

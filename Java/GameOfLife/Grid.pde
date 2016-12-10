@@ -16,6 +16,10 @@ public class Grid {
     randomise();
   }
 
+  public boolean isAlive(int row, int column) {
+    return cell[row][column].isAlive();
+  }
+
   public void render(){
     for(int i=0; i<width; i++)
       for(int j=0; j<height; j++)
@@ -26,6 +30,22 @@ public class Grid {
     for(int i=0; i<width; i++)
       for(int j=0; j<height; j++)
         cell[i][j].alive = Math.random() < 0.5;
+  }
+
+  public int getWidth() {
+    return width;
+  }
+
+  public int getHeight() {
+    return height;
+  }
+
+  public void kill(int i, int j) {
+    cell[i][j].kill();
+  }
+
+  public void revive(int i, int j) {
+    cell[i][j].revive();
   }
 
 }
