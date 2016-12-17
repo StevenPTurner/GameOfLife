@@ -3,6 +3,9 @@ import processing.data.*;
 import processing.event.*; 
 import processing.opengl.*; 
 
+import java.util.Date; 
+import java.text.SimpleDateFormat; 
+
 import java.util.HashMap; 
 import java.util.ArrayList; 
 import java.io.File; 
@@ -15,21 +18,22 @@ import java.io.IOException;
 public class GameOfLife extends PApplet {
 
 Grid grid;
+Debugger debug;
+final String format = "HH:mm:ss:SSSSSSSSS";
 
 public void setup() {
   
-  frameRate(2);
-
+  frameRate(60);
   grid = new Grid(50,50,10);
-  // System.out.println(grid.getWidth());
-  // System.out.println(grid.getHeight());
-  System.out.println(countPopulation(5,5));
+  debug = new Debugger();
 }
 
 public void draw() {
   background(0);
+  System.out.println(debug.getTimestamp(format));
   run();
   grid.render();
+  // System.out.println(debug.getTimestamp(format));
 }
 
 private int countPopulation(int i, int j) {
@@ -142,6 +146,41 @@ public class CellView {
 
     stroke(strokeColour);
     rect(x,y,size,size);
+  }
+}
+
+
+
+class Debugger {
+
+  public Debugger() {
+  }
+
+  public Date getTimestamp() {
+    Date timestamp = new Date();
+    return timestamp;
+  }
+
+  public String getTimestamp(String formatString) {
+    Date dateNow = new Date();
+    SimpleDateFormat timestamp = new SimpleDateFormat(formatString);
+    return timestamp.format(dateNow);
+  }
+
+  public void start() {
+
+  }
+
+  public void stop() {
+
+  }
+
+  public void printTimestamp() {
+
+  }
+
+  private void writeToDatabase() {
+
   }
 }
 public class Grid {

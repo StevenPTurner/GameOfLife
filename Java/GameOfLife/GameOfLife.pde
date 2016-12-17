@@ -1,19 +1,20 @@
 Grid grid;
+Debugger debug;
+final String format = "HH:mm:ss:SSSSSSSSS";
 
 void setup() {
   size(500,500);
-  frameRate(24);
-
+  frameRate(1);
   grid = new Grid(50,50,10);
-  // System.out.println(grid.getWidth());
-  // System.out.println(grid.getHeight());
-  System.out.println(countPopulation(5,5));
+  debug = new Debugger();
 }
 
 void draw() {
   background(0);
+  System.out.println(debug.getTimestamp(format));
   run();
   grid.render();
+  // System.out.println(debug.getTimestamp(format));
 }
 
 private int countPopulation(int i, int j) {
